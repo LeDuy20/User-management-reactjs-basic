@@ -1,0 +1,14 @@
+.sort-body {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+  }
+}
+.table-size {
+  overflow-x: auto;
+}

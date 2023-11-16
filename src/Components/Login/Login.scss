@@ -1,0 +1,76 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  .login-heading{ 
+    text-align: center;
+    margin-top: 70px;
+    font-weight: 500;
+  }
+  .text {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+
+    .text-email {
+      font-weight: 500;
+      font-size: 18px;
+    }
+    .text-phone {
+      font-weight: 500;
+      font-size: 16px;
+    }
+  }
+  .password {
+    position: relative;
+  }
+  input {
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid #ccc;;
+    outline: none;
+    padding: 12px;
+    border-radius: 7px;
+    background-color: #1618230f;
+    &:hover {
+      background-color: #dedede;
+    }
+  }
+  i.fa-eye-slash, i.fa-eye{
+    position: absolute;
+    top: 17px;
+    right: 10px;
+  }
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    outline: none;
+    border: none;
+    padding: 10px;
+    border-radius: 2px;
+    background-color: #ccc;
+    color: #6d6d6d;
+    font-weight: 500;
+    &.active {
+      background-color: #fe2c55;
+      color: #fff;
+    }
+  }
+  button[disabled=disabled], button:disabled {
+    cursor: not-allowed;
+  }
+  .go-back a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    color: #000;
+  }
+}
