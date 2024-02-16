@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useEffect } from "react";
 import "./Header.scss";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -6,17 +6,26 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { UserContext } from "../context/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { handleUserLogoutRedux } from "../../redux/actions/userActions";
+
 
 const Header = (props) => {
   const navigate = useNavigate();
-  const { logout, user } = useContext(UserContext);
 
+  const user = useSelector(state => state.user.user);
+  const dispatch = useDispatch()
   const handleLogOut = () => {
-    logout();
-    navigate("/");
-    toast.success("Log out success!!");
+    dispatch(handleUserLogoutRedux())
   };
+
+  useEffect(() => {
+    console.log(user)
+    if(user && user.auth === false) {
+      navigate("/");
+      toast.success("Log out success!!");
+    }
+  }, [user]);
 
   return (
     <div className="header">
@@ -25,7 +34,7 @@ const Header = (props) => {
           <Navbar.Brand href="/">App</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            {((user && user.auth) || window.location.pathname === "/") && (
+            {(user && user.auth || window.location.pathname === "/") && (
               <>
                 <Nav className="me-auto">
                   <NavLink className="nav-link" to="/">

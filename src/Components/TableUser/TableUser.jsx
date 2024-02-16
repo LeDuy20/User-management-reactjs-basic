@@ -6,7 +6,6 @@ import ModalAdmin from "../ModalAddNew";
 import ModalEdit from "../ModalEdit";
 import ModalConfirm from "../ModalConfirm";
 import "./TableUser.scss";
-
 import _, { debounce } from "lodash";
 import { CSVLink } from "react-csv";
 import Papa from "papaparse";

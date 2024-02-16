@@ -1,49 +1,42 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { loginApi } from "../../services/UserService";
 import { toast } from "react-toastify";
-import { UserContext } from "../context/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLoginUserRedux } from "../../redux/actions/userActions";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { loginContext } = useContext(UserContext);
+  const dispatch = useDispatch()
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isShowPassword, setIsShowPassWord] = useState(false);
-  const [loading, setLoading] = useState(false);
+  
+  
+  const isLoading = useSelector(state => state.user.isLoading);
+  const user = useSelector(state => state.user.user);
 
-  // useEffect(()=> {
-  //   let token = localStorage.getItem("token")
-  //   if(token) {
-  //     navigate("/");
-  //   }
-  // }, [])
+
   const handleLogin = async () => {
     if (!email || !password) {
       toast.error("Email/Password is required!!");
       return;
     }
-    setLoading(true);
-    let res = await loginApi(email, password);
-    if (res && res.token) {
-      loginContext(email, res.token);
-      navigate("/user");
-      toast.success("Login success !!");
-    } else {
-      if (res && res.status === 400) {
-        toast.error(res.data.error);
-      }
-    }
-    setLoading(false);
+    dispatch(handleLoginUserRedux(email, password ))
   };
   const handlePressEnter = (e) => {
     if(e && e.key === 'Enter') {
        handleLogin();
     }
   }
-  return (
+
+  useEffect(() => {
+    if(user && user.auth === true) {
+      navigate("/user");
+    }
+  }, [user])
+  return (  
     <div className="login col-12 col-sm-4">
       <h2 className="login-heading">Log in</h2>
       <div className="text">
@@ -78,7 +71,7 @@ const Login = () => {
         disabled={email && password ? false : true}
         onClick={() => handleLogin()}
       >
-        {loading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>}
+        {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>}
         Log in
       </button>
       <div className="go-back mt-5">

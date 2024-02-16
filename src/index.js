@@ -5,15 +5,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { BrowserRouter } from "react-router-dom";
-import { UserProvider } from "./Components/context/UserContext";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <UserProvider>
+  <Provider store={store}>
+    <React.StrictMode>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </UserProvider>
-  </React.StrictMode>
+    </React.StrictMode>
+  </Provider>
 );
