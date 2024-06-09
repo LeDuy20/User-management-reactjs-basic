@@ -3,7 +3,7 @@
   flex-direction: column;
   margin: 0 auto;
 
-  .login-heading{ 
+  .login-heading {
     text-align: center;
     margin-top: 70px;
     font-weight: 500;
@@ -13,7 +13,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
 
     .text-email {
       font-weight: 500;
@@ -26,11 +25,16 @@
   }
   .password {
     position: relative;
+
+    .text-email {
+      font-weight: 500;
+      font-size: 18px;
+    }
   }
   input {
     margin-bottom: 20px;
     width: 100%;
-    border: 1px solid #ccc;;
+    border: 1px solid #ccc;
     outline: none;
     padding: 12px;
     border-radius: 7px;
@@ -39,7 +43,8 @@
       background-color: #dedede;
     }
   }
-  i.fa-eye-slash, i.fa-eye{
+  i.fa-eye-slash,
+  i.fa-eye {
     position: absolute;
     top: 17px;
     right: 10px;
@@ -61,10 +66,11 @@
       color: #fff;
     }
   }
-  button[disabled=disabled], button:disabled {
+  button[disabled="disabled"],
+  button:disabled {
     cursor: not-allowed;
   }
-  .go-back a{
+  .go-back a {
     text-decoration: none;
     display: flex;
     align-items: center;

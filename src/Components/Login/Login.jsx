@@ -7,36 +7,34 @@ import { handleLoginUserRedux } from "../../redux/actions/userActions";
 
 const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("eve.holt@reqres.in");
+  const [password, setPassword] = useState("123456");
   const [isShowPassword, setIsShowPassWord] = useState(false);
-  
-  
-  const isLoading = useSelector(state => state.user.isLoading);
-  const user = useSelector(state => state.user.user);
 
+  const isLoading = useSelector((state) => state.user.isLoading);
+  const user = useSelector((state) => state.user.user);
 
   const handleLogin = async () => {
     if (!email || !password) {
       toast.error("Email/Password is required!!");
       return;
     }
-    dispatch(handleLoginUserRedux(email, password ))
+    dispatch(handleLoginUserRedux(email, password));
   };
   const handlePressEnter = (e) => {
-    if(e && e.key === 'Enter') {
-       handleLogin();
+    if (e && e.key === "Enter") {
+      handleLogin();
     }
-  }
+  };
 
   useEffect(() => {
-    if(user && user.auth === true) {
+    if (user && user.auth === true) {
       navigate("/user");
     }
-  }, [user])
-  return (  
+  }, [user]);
+  return (
     <div className="login col-12 col-sm-4">
       <h2 className="login-heading">Log in</h2>
       <div className="text">
@@ -50,12 +48,13 @@ const Login = () => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <div className="password mb-5">
+        <p className="text-email">Password</p>
         <input
           type={isShowPassword === true ? "text" : "password"}
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          onKeyDown = {(e) => handlePressEnter(e)}
+          onKeyDown={(e) => handlePressEnter(e)}
         />
         <i
           className={

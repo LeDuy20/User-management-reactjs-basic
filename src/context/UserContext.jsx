@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from "react";
 
 // @function  UserContext
-const UserContext = React.createContext({ name: '', auth: false });
+const UserContext = React.createContext({ name: "", auth: false });
 
 // @function  UserProvider
 // Create function to provide UserContext
 const UserProvider = ({ children }) => {
-  const [user, setUser] = React.useState({ email: '', auth: false });
+  const [user, setUser] = useState({ email: "", auth: false });
 
   const loginContext = (email, token) => {
     setUser((user) => ({
@@ -14,13 +14,13 @@ const UserProvider = ({ children }) => {
       auth: true,
     }));
     localStorage.setItem("token", token);
-    localStorage.setItem("email", email)
+    localStorage.setItem("email", email);
   };
 
   const logout = () => {
-    localStorage.removeItem("token")
+    localStorage.removeItem("token");
     setUser((user) => ({
-      name: '',
+      name: "",
       auth: false,
     }));
   };
@@ -31,4 +31,4 @@ const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-export { UserProvider, UserContext }
+export { UserProvider, UserContext };
