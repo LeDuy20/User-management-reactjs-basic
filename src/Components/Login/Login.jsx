@@ -38,7 +38,7 @@ const Login = () => {
     <div className="login col-12 col-sm-4">
       <h2 className="login-heading">Log in</h2>
       <div className="text">
-        <p className="text-email">Email or Username(eve.holt@reqres.in)</p>
+        <p className="text-email">Email</p>
         {/* <p className="text-phone">Log in with phone</p> */}
       </div>
       <input
